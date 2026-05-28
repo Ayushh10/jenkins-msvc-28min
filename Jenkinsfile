@@ -2,13 +2,13 @@ pipeline {
     // agent any
     agent { 
         docker { 
-            image 'nginx'
+            image 'maven'
             } 
         }
     stages{ 
         stage ("Dev"){
             steps {
-                sh "nginx --version"
+                sh "mvn --version"
                 echo "Dev Env"
             }
         }

@@ -8,7 +8,7 @@ pipeline {
     stages{ 
         stage ("Dev"){
             steps {
-                sh "mvn --version"
+                sh "node --version"
                 echo "Dev Env"
             }
         }

@@ -15,7 +15,7 @@ pipeline {
         stage ("Dev"){
             steps {
                 echo "Dev Env"
-                sh "maven --version"
+                sh "mvn --version"
                 sh "docker version"
 
                 echo "Build"

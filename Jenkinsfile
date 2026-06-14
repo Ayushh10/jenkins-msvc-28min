@@ -25,14 +25,19 @@ pipeline {
                 echo "Job Name - $env.JOB_NAME"
             }
         }
-        stage ("Stage"){
+        stage ("Compile"){
             steps {
-                echo "Stage Env"
+                sh "mvn clean compile"
             }
         }
-        stage ("Prod"){
+        stage ("Test"){
             steps {
-                echo "Prod Env"
+                sh "mvn test"
+            }
+        }
+        stage ("Integration Test"){
+            steps {
+                echo "mvn failsafe:integration-test failsafe:verify"
             }
         }
     }

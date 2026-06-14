@@ -1,12 +1,3 @@
-node {
-// 	stage('Build') {
-// 		echo "Build"
-// 	}
-// 	stage('Test') {
-// 		echo "Test"
-// 	}
-// }
-
 pipeline {
     agent any
     // agent { 

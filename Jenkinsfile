@@ -11,6 +11,11 @@ pipeline {
         mavenHome = tool 'myMaven'
         PATH = "$dockerHome/bin:$mavenHome/bin:$PATH"
     }
+        environment {
+        // Define your Docker Hub username and image name
+        REGISTRY_CREDS = 'dockerhub' // This matches the Jenkins Credential ID
+        IMAGE_NAME     = 'killwishh/currency-exchange-devops'
+        IMAGE_TAG      = "${BUILD_TAG}"
     stages{ 
         stage ("Dev"){
             steps {
@@ -58,7 +63,7 @@ pipeline {
         stage ("Push Docker Image") {
             steps {
                 script {
-                    docker.withRegistry('', 'dockerhub') {
+                    docker.withRegistry('https://docker.io', "${REGISTRY_CREDS}") {
                         dockerImage.Push();
                         dockerImage.Push("latest");
                     }

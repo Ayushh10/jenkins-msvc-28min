@@ -66,7 +66,7 @@ pipeline {
         }
         stage ("Push Docker Image") {
             steps {
-                withCredentials([usernamePassword(credentialsId: 'dockerhub', usernameVariable: 'USER', passwordVariable: 'PASS')]) {
+                withCredentials([usernamePassword(credentialsId: 'dockerhub', usernameVariable: 'USER', passwordVariable: 'PASS')]) 
                 sh 'docker login -u $USER -p $PASS'
                 script {
                     docker.withRegistry('https://docker.io', "${REGISTRY_CREDS}") {

@@ -56,10 +56,11 @@ pipeline {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'dockerhub', usernameVariable: 'USER', passwordVariable: 'PASS')]) {
                 sh 'docker login -u $USER -p $PASS'
-                script{
+                script {
                 // Default
                 // docker build -t killwishh/currency-exchange-devops:${env.BUILD_TAG}
                 docker Image = docker.build("killwishh/currency-exchange-devops:${env.BUILD_TAG}")
+                    }
                 }
             }
         }

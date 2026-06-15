@@ -10,8 +10,7 @@ pipeline {
         dockerHome = tool 'myDocker'
         mavenHome = tool 'myMaven'
         PATH = "$dockerHome/bin:$mavenHome/bin:$PATH"
-    }
-        environment {
+        
         // Define your Docker Hub username and image name
         REGISTRY_CREDS = 'dockerhub' // This matches the Jenkins Credential ID
         IMAGE_NAME     = 'killwishh/currency-exchange-devops'

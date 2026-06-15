@@ -16,6 +16,7 @@ pipeline {
         REGISTRY_CREDS = 'dockerhub' // This matches the Jenkins Credential ID
         IMAGE_NAME     = 'killwishh/currency-exchange-devops'
         IMAGE_TAG      = "${BUILD_TAG}"
+    }
     stages{ 
         stage ("Dev"){
             steps {

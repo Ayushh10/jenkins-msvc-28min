@@ -30,6 +30,11 @@ pipeline {
                 sh "mvn clean compile"
             }
         }
+        stage ("package"){
+            steps {
+                sh "mvn package -DskipTests"
+            }
+        }
         // stage ("Test"){
         //     steps {
         //         sh "mvn test"
@@ -40,5 +45,25 @@ pipeline {
         //         sh "mvn failsafe:integration-test failsafe:verify"
         //     }
         // }
+
+        stage ("Build Docker Image"){
+            steps {
+                script{
+                // Default
+                // docker build -t killwishh/currency-exchange-devops:${env.BUILD_TAG}
+                docker Image = docker.build("killwishh/currency-exchange-devops:${env.BUILD_TAG}")
+                }
+            }
+        }
+        stage ("Push Docker Image") {
+            steps {
+                script {
+                    docker.withRegistry('', 'dockerhub') {
+                        dockerImage.Push();
+                        dockerImage.Push("latest");
+                    }
+                }
+            }
+        }
     }
 }
